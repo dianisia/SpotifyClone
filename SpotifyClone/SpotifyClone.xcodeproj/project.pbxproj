@@ -13,6 +13,7 @@
 		80D6B49B1041C6A0BC422177 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BD2D0434808354DC3918 /* Extensions.swift */; };
 		80D6B59DA15C5977E9549234 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BABD7683774E03B14EA5 /* SceneDelegate.swift */; };
 		80D6BECFECEB6C1CCFFD2F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D6B82549C881D6651C2E7A /* Assets.xcassets */; };
+		80D6BF1A4C68B9FBF6A2C042 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BE5685D3C68FA696E41F /* AuthResponse.swift */; };
 		E4B705712607BF840074221E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B705702607BF840074221E /* TabBarViewController.swift */; };
 		E4B705772607C04B0074221E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B705762607C04B0074221E /* SearchViewController.swift */; };
 		E4B7057A2607C0710074221E /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B705792607C0710074221E /* LibraryViewController.swift */; };
@@ -38,6 +39,7 @@
 		80D6B82549C881D6651C2E7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80D6BABD7683774E03B14EA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		80D6BD2D0434808354DC3918 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		80D6BE5685D3C68FA696E41F /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		80D6BF40FDACF8C0058DCA0A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4B7054E2607B1430074221E /* SpotifyClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpotifyClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B7055F2607B1480074221E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				E4B705A22607C2DD0074221E /* AudioTrack.swift */,
 				E4B705A52607C2EB0074221E /* Artist.swift */,
 				E4B705A82607C3030074221E /* UserProfile.swift */,
+				80D6BE5685D3C68FA696E41F /* AuthResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				E4B7059A2607C2600074221E /* APICaller.swift in Sources */,
 				E4B705862607C1150074221E /* SettingsViewController.swift in Sources */,
 				80D6B49B1041C6A0BC422177 /* Extensions.swift in Sources */,
+				80D6BF1A4C68B9FBF6A2C042 /* AuthResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
