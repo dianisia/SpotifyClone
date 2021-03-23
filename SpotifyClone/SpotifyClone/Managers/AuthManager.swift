@@ -9,7 +9,8 @@ import Foundation
 
 final class AuthManager {
     static let shared = AuthManager()
-    
+    var refreshingToken = false
+
     struct Constants {
         static let clientId = "a0e72a1c68054f889648a2e911192a6d"
         static let clientSecret = "afb62ddc632c4653bbd0bb6d137cfb2b"
@@ -60,9 +61,16 @@ final class AuthManager {
             code: String,
             completion: @escaping ((Bool) -> Void)
     ) {
+
+        guard !refreshingToken else {
+            return
+        }
+
         guard let url = URL(string: Constants.tokenAPIURL) else {
             return
         }
+
+        refreshingToken = true
 
         var components = URLComponents()
         components.queryItems = [
@@ -86,6 +94,7 @@ final class AuthManager {
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
 
         let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            self.refreshingToken = false
             guard let data = data,
                   error == nil else {
                 completion(false)
@@ -114,6 +123,24 @@ final class AuthManager {
         }
         UserDefaults.standard.setValue(result.refresh_token, forKey: "refresh_token")
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expires_in")
+    }
+
+    private var onRefreshBlocks = [((String) -> Void)]()
+
+    public func withValidToken(completion: @escaping (String) -> Void) {
+        guard !refreshingToken else {
+            onRefreshBlocks.append(completion)
+            return
+        }
+        if shouldRefreshToken {
+            refreshIfNeeded { success in
+                if let token = self.accessToken, success {
+                    completion(token)
+                }
+            }
+        } else if let token = accessToken {
+            completion(token)
+        }
     }
 
     public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
@@ -159,7 +186,8 @@ final class AuthManager {
 
             do {
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
-                print("Refreshed")
+                self.onRefreshBlocks.forEach { $0(result.access_token) }
+                self.onRefreshBlocks.removeAll()
                 self.cacheToken(result: result)
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                 print("SUCCESS: \(json)")
