@@ -48,7 +48,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         let vc = ProfileViewController()
         vc.title = "Profile"
         vc.navigationItem.largeTitleDisplayMode = .never
-        vc.navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     override func viewDidLayoutSubviews() {
