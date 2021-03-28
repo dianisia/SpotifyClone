@@ -24,24 +24,53 @@ final class APICaller {
         createRequest(
                 with: URL(string: Constants.baseAPIURL + "me/"),
                 type: .GET
-        ) { baseRequest in
-            let task = URLSession.shared.dataTask(with: baseRequest) { data, _, error in
-                guard let data = data, error == nil else {
-                    completion(.failure(APIError.failedToGetData))
-                    return
-                }
+        ) { request in self.makeRequest(request: request, completion: completion) }
+    }
 
-                do {
-                    let result = try JSONDecoder().decode(UserProfile.self, from: data)
-                    completion(.success(result))
-                }
-                catch {
-                    print(error.localizedDescription)
-                    completion(.failure(error))
-                }
-            }
-            task.resume()
+    public func getNewReleases(completion: @escaping ((Result<NewReleasesResponse, Error>) -> Void)) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "browse/new-releases?limit=50"), type: .GET) {
+            request in self.makeRequest(request: request, completion: completion)
         }
+    }
+
+    public func getFeaturedPlaylists(completion: @escaping ((Result<FeaturedPlaylistResponse, Error>) -> Void)) {
+        createRequest(with: URL(string: Constants.baseAPIURL + "browse/featured-playlists?limit=50"), type: .GET) {
+            request in self.makeRequest(request: request, completion: completion)
+        }
+    }
+
+    public func getRecommendations(genres: Set<String>, completion: @escaping ((Result<RecommendationsResponse, Error>) -> Void)) {
+        let seeds = genres.joined(separator: ",")
+        createRequest(with: URL(string: Constants.baseAPIURL + "recommendations?seed_genres=\(seeds)"), type: .GET) {
+            request in self.makeRequest(request: request, completion: completion)
+        }
+    }
+
+    public func getRecommendedGenres(completion: @escaping ((Result<RecommendedGenresResponse, Error>) -> Void)) {
+        createRequest(
+                with: URL(string: Constants.baseAPIURL + "recommendations/available-genre-seeds"),
+                type: .GET
+        ) { request in self.makeRequest(request: request, completion: completion) }
+    }
+
+    private func makeRequest<T: Codable>(request: URLRequest, completion: @escaping ((Result<T, Error>) -> Void)) {
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data = data, error == nil else {
+                completion(.failure(APIError.failedToGetData))
+                return
+            }
+
+            do {
+                let result = try JSONDecoder().decode(T.self, from: data)
+                print(result)
+                completion(.success(result))
+            }
+            catch {
+                print(error.localizedDescription)
+                completion(.failure(error))
+            }
+        }
+        task.resume()
     }
 
     enum HTTPMethod: String {

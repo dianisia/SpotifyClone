@@ -45,7 +45,7 @@ final class AuthManager {
     }
 
     private var tokenExpirationDate: Date? {
-        return UserDefaults.standard.object(forKey: "expirationDate") as? Date
+        return UserDefaults.standard.object(forKey: "expires_in") as? Date
     }
 
     private var shouldRefreshToken: Bool {
@@ -133,8 +133,13 @@ final class AuthManager {
             return
         }
         if shouldRefreshToken {
+            print("Should refresh")
+            print(shouldRefreshToken)
             refreshIfNeeded { success in
+                print("success")
+                print(success)
                 if let token = self.accessToken, success {
+                    print(token)
                     completion(token)
                 }
             }
@@ -190,7 +195,6 @@ final class AuthManager {
                 self.onRefreshBlocks.removeAll()
                 self.cacheToken(result: result)
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                print("SUCCESS: \(json)")
                 completion?(true)
             } catch {
                 print(error.localizedDescription)
