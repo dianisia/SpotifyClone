@@ -26,7 +26,7 @@ extension UIView {
         return frame.origin.y
     }
 
-    var botton: CGFloat {
+    var bottom: CGFloat {
         return top + height
     }
 }
