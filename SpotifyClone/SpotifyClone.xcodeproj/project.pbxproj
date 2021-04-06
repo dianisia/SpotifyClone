@@ -13,6 +13,7 @@
 		80D6B15A9A4ACDC435E06605 /* FeaturedPlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BACCE037D069EC0ED719 /* FeaturedPlaylistCollectionViewCell.swift */; };
 		80D6B1F3CEFC87ABA5689DF1 /* APIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B3D6B64276442702870C /* APIImage.swift */; };
 		80D6B32A3721600303664588 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B39F9F1B99E8DFF40AB9 /* HomeViewController.swift */; };
+		80D6B4400AF85B5EDF15FD2F /* RecommendedTrackCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BCEE6789006C34765407 /* RecommendedTrackCellViewModel.swift */; };
 		80D6B483D3183D8CE27FE323 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80D6BF40FDACF8C0058DCA0A /* LaunchScreen.storyboard */; };
 		80D6B49B1041C6A0BC422177 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BD2D0434808354DC3918 /* Extensions.swift */; };
 		80D6B59DA15C5977E9549234 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BABD7683774E03B14EA5 /* SceneDelegate.swift */; };
@@ -21,6 +22,7 @@
 		80D6B8D9D7104F505D8E4287 /* NewReleaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B941EC34CF9185E283EF /* NewReleaseCollectionViewCell.swift */; };
 		80D6B965AADEAAF744643142 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BE19C43596C4122C0A95 /* SettingsModels.swift */; };
 		80D6BAB88C2CA71197A69559 /* RecommendationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B761209B09205A89DD77 /* RecommendationsResponse.swift */; };
+		80D6BB96C34632A7247CDE45 /* FeaturedPlaylistCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BD9AD8F2C44C19812C0D /* FeaturedPlaylistCellViewModel.swift */; };
 		80D6BDC9F8D569F0BC9CFB8F /* RecommendedTrackCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6B9F506F5BAD044F8DD32 /* RecommendedTrackCollectionViewCell.swift */; };
 		80D6BECFECEB6C1CCFFD2F41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80D6B82549C881D6651C2E7A /* Assets.xcassets */; };
 		80D6BF1A4C68B9FBF6A2C042 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D6BE5685D3C68FA696E41F /* AuthResponse.swift */; };
@@ -59,7 +61,9 @@
 		80D6BABD7683774E03B14EA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		80D6BACCE037D069EC0ED719 /* FeaturedPlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		80D6BC096A081E2BB8685976 /* FeaturedPlaylistResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistResponse.swift; sourceTree = "<group>"; };
+		80D6BCEE6789006C34765407 /* RecommendedTrackCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendedTrackCellViewModel.swift; sourceTree = "<group>"; };
 		80D6BD2D0434808354DC3918 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		80D6BD9AD8F2C44C19812C0D /* FeaturedPlaylistCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedPlaylistCellViewModel.swift; sourceTree = "<group>"; };
 		80D6BE19C43596C4122C0A95 /* SettingsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
 		80D6BE5685D3C68FA696E41F /* AuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		80D6BF40FDACF8C0058DCA0A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 			isa = PBXGroup;
 			children = (
 				80D6BA133E77426A5B5AE4D2 /* NewReleasesCellViewModel.swift */,
+				80D6BD9AD8F2C44C19812C0D /* FeaturedPlaylistCellViewModel.swift */,
+				80D6BCEE6789006C34765407 /* RecommendedTrackCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -393,6 +399,8 @@
 				80D6B15A9A4ACDC435E06605 /* FeaturedPlaylistCollectionViewCell.swift in Sources */,
 				80D6BDC9F8D569F0BC9CFB8F /* RecommendedTrackCollectionViewCell.swift in Sources */,
 				80D6B0752D345DA5E6313747 /* NewReleasesCellViewModel.swift in Sources */,
+				80D6BB96C34632A7247CDE45 /* FeaturedPlaylistCellViewModel.swift in Sources */,
+				80D6B4400AF85B5EDF15FD2F /* RecommendedTrackCellViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
