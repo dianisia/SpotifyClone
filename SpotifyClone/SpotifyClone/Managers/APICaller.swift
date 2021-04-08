@@ -20,6 +20,22 @@ final class APICaller {
         case failedToGetData
     }
 
+    // MARK: - Albums
+    public func getAlbumDetails(for album: Album, completion: @escaping (Result<AlbumDetailsResponse, Error>) -> Void) {
+        createRequest(
+                with: URL(string: Constants.baseAPIURL + "albums/\(album.id)"),
+                type: .GET
+        ) { request in self.makeRequest(request: request, completion: completion) }
+    }
+
+    // MARK: - Playlists
+    public func getPlaylistDetails(for playlist: Playlist, completion: @escaping (Result<PlaylistDetailsResponse, Error>) -> Void) {
+        createRequest(
+                with: URL(string: Constants.baseAPIURL + "playlists/\(playlist.id)"),
+                type: .GET
+        ) { request in self.makeRequest(request: request, completion: completion) }
+    }
+
     public func getCurrentUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void) {
         createRequest(
                 with: URL(string: Constants.baseAPIURL + "me/"),
