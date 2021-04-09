@@ -136,7 +136,7 @@ class HomeViewController: UIViewController {
             let item = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                             widthDimension: .fractionalWidth(1.0),
-                            heightDimension: .fractionalWidth(1.0)
+                            heightDimension: .fractionalHeight(1.0)
                     )
             )
 
@@ -144,7 +144,7 @@ class HomeViewController: UIViewController {
 
             let group = NSCollectionLayoutGroup.vertical(
                     layoutSize: NSCollectionLayoutSize(
-                            widthDimension: .fractionalHeight(1),
+                            widthDimension: .fractionalWidth(1),
                             heightDimension: .absolute(80)
                     ),
                     subitem: item,
@@ -161,7 +161,7 @@ class HomeViewController: UIViewController {
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
 
             let group = NSCollectionLayoutGroup.vertical(
-                    layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalHeight(1.0), heightDimension: .absolute(390)),
+                    layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(390)),
                     subitem: item,
                     count: 1
             )
