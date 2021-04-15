@@ -10,7 +10,8 @@ import Foundation
 final class APICaller {
     static let shared = APICaller()
 
-    private init() {}
+    private init() {
+    }
 
     struct Constants {
         static let baseAPIURL = "https://api.spotify.com/v1/"
@@ -25,7 +26,28 @@ final class APICaller {
         createRequest(
                 with: URL(string: Constants.baseAPIURL + "albums/\(album.id)"),
                 type: .GET
-        ) { request in self.makeRequest(request: request, completion: completion) }
+        ) { request in
+            self.makeRequest(request: request, completion: completion)
+        }
+    }
+
+    // MARK: - Categories
+    public func getCategories(completion: @escaping (Result<AllCategoriesResponse, Error>) -> Void) {
+        createRequest(
+                with: URL(string: Constants.baseAPIURL + "browse/categories?limit=50"),
+                type: .GET
+        ) { request in
+            self.makeRequest(request: request, completion: completion)
+        }
+    }
+
+    public func getCategoryPlaylists(category: Category, completion: @escaping (Result<FeaturedPlaylistResponse, Error>) -> Void) {
+        createRequest(
+                with: URL(string: Constants.baseAPIURL + "browse/categories/\(category.id)/playlists?limit=2"),
+                type: .GET
+        ) { request in
+            self.makeRequest(request: request, completion: completion)
+        }
     }
 
     // MARK: - Playlists
@@ -33,32 +55,39 @@ final class APICaller {
         createRequest(
                 with: URL(string: Constants.baseAPIURL + "playlists/\(playlist.id)"),
                 type: .GET
-        ) { request in self.makeRequest(request: request, completion: completion) }
+        ) { request in
+            self.makeRequest(request: request, completion: completion)
+        }
     }
 
     public func getCurrentUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void) {
         createRequest(
                 with: URL(string: Constants.baseAPIURL + "me/"),
                 type: .GET
-        ) { request in self.makeRequest(request: request, completion: completion) }
+        ) { request in
+            self.makeRequest(request: request, completion: completion)
+        }
     }
 
     public func getNewReleases(completion: @escaping ((Result<NewReleasesResponse, Error>) -> Void)) {
         createRequest(with: URL(string: Constants.baseAPIURL + "browse/new-releases?limit=50"), type: .GET) {
-            request in self.makeRequest(request: request, completion: completion)
+            request in
+            self.makeRequest(request: request, completion: completion)
         }
     }
 
     public func getFeaturedPlaylists(completion: @escaping ((Result<FeaturedPlaylistResponse, Error>) -> Void)) {
         createRequest(with: URL(string: Constants.baseAPIURL + "browse/featured-playlists?limit=50"), type: .GET) {
-            request in self.makeRequest(request: request, completion: completion)
+            request in
+            self.makeRequest(request: request, completion: completion)
         }
     }
 
     public func getRecommendations(genres: Set<String>, completion: @escaping ((Result<RecommendationsResponse, Error>) -> Void)) {
         let seeds = genres.joined(separator: ",")
         createRequest(with: URL(string: Constants.baseAPIURL + "recommendations?seed_genres=\(seeds)"), type: .GET) {
-            request in self.makeRequest(request: request, completion: completion)
+            request in
+            self.makeRequest(request: request, completion: completion)
         }
     }
 
@@ -66,7 +95,9 @@ final class APICaller {
         createRequest(
                 with: URL(string: Constants.baseAPIURL + "recommendations/available-genre-seeds"),
                 type: .GET
-        ) { request in self.makeRequest(request: request, completion: completion) }
+        ) { request in
+            self.makeRequest(request: request, completion: completion)
+        }
     }
 
     private func makeRequest<T: Codable>(request: URLRequest, completion: @escaping ((Result<T, Error>) -> Void)) {
@@ -79,8 +110,7 @@ final class APICaller {
             do {
                 let result = try JSONDecoder().decode(T.self, from: data)
                 completion(.success(result))
-            }
-            catch {
+            } catch {
                 print(error.localizedDescription)
                 completion(.failure(error))
             }
