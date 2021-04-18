@@ -43,7 +43,7 @@ final class APICaller {
 
     public func getCategoryPlaylists(category: Category, completion: @escaping (Result<FeaturedPlaylistResponse, Error>) -> Void) {
         createRequest(
-                with: URL(string: Constants.baseAPIURL + "browse/categories/\(category.id)/playlists?limit=2"),
+                with: URL(string: Constants.baseAPIURL + "browse/categories/\(category.id)/playlists?limit=50"),
                 type: .GET
         ) { request in
             self.makeRequest(request: request, completion: completion)
